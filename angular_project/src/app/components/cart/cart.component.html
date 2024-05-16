@@ -1,0 +1,688 @@
+<!-- 
+
+
+<div class="card">
+  <div class="row">
+      <div class="col-md-8 cart">
+          <div class="title">
+              <div class="row">
+                  <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                  <div class="col align-self-center text-right text-muted">3 items</div>
+              </div>
+          </div>    
+          <div class="row border-top border-bottom">
+              <div class="row main align-items-center">
+                  <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+                  <div class="col">
+                      <div class="row text-muted">Shirt</div>
+                      <div class="row">Cotton T-shirt</div>
+                  </div>
+                  <div class="col">
+                      <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                  </div>
+                  <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="row main align-items-center">
+                  <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
+                  <div class="col">
+                      <div class="row text-muted">Shirt</div>
+                      <div class="row">Cotton T-shirt</div>
+                  </div>
+                  <div class="col">
+                      <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                  </div>
+                  <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+              </div>
+          </div>
+          <div class="row border-top border-bottom">
+              <div class="row main align-items-center">
+                  <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
+                  <div class="col">
+                      <div class="row text-muted">Shirt</div>
+                      <div class="row">Cotton T-shirt</div>
+                  </div>
+                  <div class="col">
+                      <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                  </div>
+                  <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+              </div>
+          </div>
+          <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+      </div>
+      <div class="col-md-4 summary">
+          <div><h5><b>Summary</b></h5></div>
+          <hr>
+          <div class="row">
+              <div class="col" style="padding-left:0;">ITEMS 3</div>
+              <div class="col text-right">&euro; 132.00</div>
+          </div>
+          <form>
+              <p>SHIPPING</p>
+              <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
+              <p>GIVE CODE</p>
+              <input id="code" placeholder="Enter your code">
+          </form>
+          <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+              <div class="col">TOTAL PRICE</div>
+              <div class="col text-right">&euro; 137.00</div>
+          </div>
+          <button class="btn">CHECKOUT</button>
+      </div>
+  </div>
+  
+</div> -->
+
+
+
+
+
+<!-- totals -->
+<section class="totals py-5">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col text-uppercase text-center">
+        <div class="row">
+          <!-- single column -->
+          <div class="col-10 mx-auto col-md-2">
+            <p class="text-uppercase">
+              products
+            </p>
+          </div>
+          <!-- end of single column -->
+          <!-- single column -->
+          <div class="col-10 mx-auto col-md-4">
+            <p class="text-uppercase">
+              name of products
+            </p>
+          </div>
+          <!-- end of single column -->
+          <!-- single column -->
+          <div class="col-10 mx-auto col-md-2">
+            <p class="text-uppercase">
+              price
+            </p>
+          </div>
+          <!-- end of single column -->
+          <!-- single column -->
+          <div class="col-10 mx-auto col-md-2">
+            <p class="text-uppercase">
+              quantity
+            </p>
+          </div>
+          <!-- end of single column -->
+          <!-- single column -->
+          <div class="col-10 mx-auto col-md-2">
+            <p class="text-uppercase">
+              total
+            </p>
+          </div>
+          <!-- end of single column -->
+        </div>
+        <hr>
+        <!-- end of columns -->
+        <div class="row my-3 align-items-center" *ngFor="let item of products; let i = index">
+          <!-- all about product -->
+          <div class="col-10 mx-auto col-md-2 my-3">
+            <img src="assets/img/uploadedImage/{{item.fileUploadList[0].name}}" alt="" class="img-fluid">
+          </div>
+          <div class="col-10 mx-auto col-md-4">
+            <p class="text-uppercase">
+              {{item.productName}}
+            </p>
+          </div>
+          <div class="col-10 mx-auto col-md-2">
+            <p class="text-uppercase">
+              {{item.unitPrice}}$
+            </p>
+          </div>
+          <div class="col-10 mx-auto col-md-2">
+
+            <div class="d-flex justify-content-center align-items-center">
+              <button class="btn btn-black mx-1" [disabled]='true' *ngIf="item.quantity<=1" >-</button>
+              <button class="btn btn-black mx-1" (click)="setQt('sub', item.id)"  *ngIf="item.quantity>1">-</button>
+
+              <button class="btn btn-black mx-1">{{item.quantity}}</button>
+              <button class="btn btn-black mx-1" (click)="setQt('add',item.id)">+</button>
+            </div>
+
+            <!-- <div class="d-flex justify-content-center align-items-center">
+              <span class="btn btn-black mx-1">-</span>
+              <span class="btn btn-black mx-1">{{item.quantity}}</span>
+              <span class="btn btn-black mx-1">+</span>
+            </div> -->
+          </div>
+          <div class="col-10 mx-auto col-md-2">
+            <p class="text-uppercase">
+              {{item.total}}$
+              &nbsp;
+              <button (click)="removeItem(item)" ><i class='fas fa-trash-alt'></i></button>
+            </p>
+
+
+          </div>
+
+          <!-- end of all about product -->
+
+        </div>
+        <!-- buttons -->
+
+        <!-- cart total -->
+        <div class="row">
+          <div class="col mx-auto col-sm-8 col-md-6 col-lg-4 my-3">
+            <div class="card card-body bg-secondary text-uppercase">
+              <div class="card-title text-white">
+                <h6>cart total</h6>
+              </div>
+              <div class="row">
+                <!-- single row -->
+                <div class="col-6">
+                  SUB TOTOAL
+                </div>
+                <div class="col-6">
+                  $ {{subTotal}}
+                </div>
+                <!-- end of single row -->
+                <!-- single row -->
+                <div class="col-6">
+                  TAX
+                </div>
+                <div class="col-6">
+                  $ {{subTotal* tax}}
+                </div>
+                <!-- end of single row -->
+                <!-- single row -->
+                <div class="col-6">
+                  SHIPPING
+                </div>
+                <div class="col-6">
+                  $ {{subTotal* shipping}}
+                </div>
+                <!-- end of single row -->
+                <!-- single row -->
+                <div class="col-6 my-2">
+                  ORDER TOTAL
+                </div>
+                <div class="col-6 text-danger my-2">
+                  ${{grandTotal}}
+                </div>
+                <!-- end of single row -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of cart total -->
+
+
+
+<!---------------Check Out Form---------- ----------->
+<div class="container">
+  <h2>Billing address</h2>
+  <form [formGroup]="orderForm" (ngSubmit)="postOrder()">
+    <div class="form-group form-inline">
+      <input type="text" class="form-control" id="email" placeholder="First Name" formControlName="firstName"> &nbsp;&nbsp;&nbsp;
+      <input type="text" class="form-control" id="email" placeholder="Last Name" formControlName="lastName">
+
+    </div>
+    <div class="form-group form-inline">
+      <input type="text" class="form-control" id="pwd" placeholder="Email" formControlName="email">&nbsp;&nbsp;&nbsp;
+      <input type="text" class="form-control" id="pwd" placeholder="Phone" formControlName="phone">
+
+    </div>
+    <div class="form-group form-inline">
+      <input type="text" class="form-control" id="pwd" placeholder="City" formControlName="orderCity">&nbsp;&nbsp;&nbsp;
+      <input type="text" class="form-control" id="pwd" placeholder="Zip Code" formControlName="zip">&nbsp;&nbsp;&nbsp;
+      <input type="text" class="form-control" id="pwd" placeholder="House No" formControlName="houseNo">
+
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="email" placeholder="Address 1" formControlName="orderAddress1">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="pwd" placeholder="Address 2" formControlName="orderAddress2">
+    </div>
+    
+    <div class="form-group form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" formControlName="userAdderss"> Shipping address is the same as my billing address
+      </label>
+    </div>
+
+    <h2>Payment</h2>
+
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" placeholder="Address 1" >
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="pwd" placeholder="Address 2" >
+    </div>
+
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+
+
+    <div class="row my-3">
+      <div class="col-sm-6 mx-auto col d-flex justify-content-center flex-wrap">
+        <a type="button" routerLink="/home" class="btn btn-black my-2">Continue shipping</a>
+        <button type="submit" class="btn btn-yellow ml-2 my-2">checkout</button>
+        <button onclick="window.print()" type="" class="btn btn-primary ml-2 my-2"  >Print</button>
+      </div>
+    </div>
+
+
+<div>
+
+  <a href="javascript:void(0)" onclick="print()" rel="noopener" target="_blank" class="btn btn-default">
+    <i class="fas fa-print"></i><span> Print</span></a>
+</div>
+
+    <!-- onclick="window.print()" -->
+  </form>
+</div>
+<!----------------------------------------->
+
+
+
+
+        <!-- end of buttons -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end of totals -->
+
+<!-- featured section -->
+<section id="featured" class="featured py-5">
+  <div class="container">
+    <div class="row my-3">
+      <div class="col-10 mx-auto text-center">
+        <h1 class="text-uppercase">
+          featured products
+        </h1>
+        <p class="text-muted">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, deleniti?
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <!-- single product -->
+      <div class="col-10 mx-auto col-md-6 col-lg-4">
+        <div class="featured-container p-5">
+          <img src="assets/img/img-products/product-1.png" alt="" class="img-fluid">
+          <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+            <i class="fas fa-search"></i>
+          </span>
+          <a href="#" class="featured-store-link text-capitalize">add to cart</a>
+        </div>
+        <h6 class="text-capitalize text-center my-2">
+          special product
+        </h6>
+        <h6 class="text-center">
+          <span class="text-muted old-price mx-2">$200</span>
+          <span>$100</span>
+        </h6>
+      </div>
+      <!-- end of single product -->
+      <!-- single product -->
+      <div class="col-10 mx-auto col-md-6 col-lg-4">
+        <div class="featured-container p-5">
+          <img src="assets/img/img-products/product-6.png" alt="" class="img-fluid">
+          <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+            <i class="fas fa-search"></i>
+          </span>
+          <a href="#" class="featured-store-link text-capitalize">add to cart</a>
+        </div>
+        <h6 class="text-capitalize text-center my-2">
+          special product
+        </h6>
+        <h6 class="text-center">
+          <span class="text-muted old-price mx-2">$200</span>
+          <span>$100</span>
+        </h6>
+      </div>
+      <!-- end of single product -->
+      <!-- single product -->
+      <div class="col-10 mx-auto col-md-6 col-lg-4">
+        <div class="featured-container p-5">
+          <img src="assets/img/img-products/product-2.png" alt="" class="img-fluid">
+          <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+            <i class="fas fa-search"></i>
+          </span>
+          <a href="#" class="featured-store-link text-capitalize">add to cart</a>
+        </div>
+        <h6 class="text-capitalize text-center my-2">
+          special product
+        </h6>
+        <h6 class="text-center">
+          <span class="text-muted old-price mx-2">$200</span>
+          <span>$100</span>
+        </h6>
+      </div>
+      <!-- end of single product -->
+      <!-- single product -->
+      <div class="col-10 mx-auto col-md-6 col-lg-4">
+        <div class="featured-container p-5">
+          <img src="assets/img/img-products/product-3.png" alt="" class="img-fluid">
+          <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+            <i class="fas fa-search"></i>
+          </span>
+          <a href="#" class="featured-store-link text-capitalize">add to cart</a>
+        </div>
+        <h6 class="text-capitalize text-center my-2">
+          special product
+        </h6>
+        <h6 class="text-center">
+          <span class="text-muted old-price mx-2">$200</span>
+          <span>$100</span>
+        </h6>
+      </div>
+      <!-- end of single product -->
+      <!-- single product -->
+      <div class="col-10 mx-auto col-md-6 col-lg-4">
+        <div class="featured-container p-5">
+          <img src="assets/img/img-products/product-4.png" alt="" class="img-fluid">
+          <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+            <i class="fas fa-search"></i>
+          </span>
+          <a href="#" class="featured-store-link text-capitalize">add to cart</a>
+        </div>
+        <h6 class="text-capitalize text-center my-2">
+          special product
+        </h6>
+        <h6 class="text-center">
+          <span class="text-muted old-price mx-2">$200</span>
+          <span>$100</span>
+        </h6>
+      </div>
+      <!-- end of single product -->
+      <!-- single product -->
+      <div class="col-10 mx-auto col-md-6 col-lg-4">
+        <div class="featured-container p-5">
+          <img src="assets/img/img-products/product-5.png" alt="" class="img-fluid">
+          <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+            <i class="fas fa-search"></i>
+          </span>
+          <a href="#" class="featured-store-link text-capitalize">add to cart</a>
+        </div>
+        <h6 class="text-capitalize text-center my-2">
+          special product
+        </h6>
+        <h6 class="text-center">
+          <span class="text-muted old-price mx-2">$200</span>
+          <span>$100</span>
+        </h6>
+      </div>
+      <!-- end of single product -->
+    </div>
+  </div>
+</section>
+<!-- end of featured section -->
+
+<!-- partners -->
+<section class="partners py-5">
+  <div class="container">
+    <div class="row">
+      <!-- compnay carousel -->
+      <div class="col-6 col-md-6 col-lg-4 mx-auto">
+        <div id="partnerCarousel" class="carousel slide " data-ride="carousel">
+          <div class="carousel-inner">
+            <!-- single item -->
+            <div class="carousel-item active">
+              <img src="assets/img/company-logos/company-logo-1.png" class="d-block w-100" alt="partner company" />
+            </div>
+            <!-- end single item -->
+            <!-- single item -->
+            <div class="carousel-item ">
+              <img src="assets/img/company-logos/company-logo-2.png" class="d-block w-100" alt="partner company" />
+            </div>
+            <!-- end single item -->
+            <!-- single item -->
+            <div class="carousel-item ">
+              <img src="assets/img/company-logos/company-logo-3.png" class="d-block w-100" alt="partner company" />
+            </div>
+            <!-- end single item -->
+            <!-- single item -->
+            <div class="carousel-item ">
+              <img src="assets/img/company-logos/company-logo-4.png" class="d-block w-100" alt="partner company" />
+            </div>
+            <!-- end single item -->
+            <!-- single item -->
+            <div class="carousel-item ">
+              <img src="assets/img/company-logos/company-logo-5.png" class="d-block w-100" alt="partner company" />
+            </div>
+            <!-- end single item -->
+            <!-- single item -->
+            <div class="carousel-item">
+              <img src="assets/img/company-logos/company-logo-6.png" class="d-block w-100" alt="partner company" />
+            </div>
+            <!-- end single item -->
+          </div>
+          <a href="#partnerCarousel" class="carousel-control-prev" role="button" data-slide="prev">
+            <i class="fas fa-arrow-left"></i>
+          </a>
+          <a href="#partnerCarousel" class="carousel-control-next" role="button" data-slide="next">
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end of  partners -->
+
+<!-- newsletter section -->
+<section id="newsletter" class="newsletter py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 mx-auto text-center">
+        <h2 class="text-uppercase">
+          newsletter
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti blanditiis similique eum, aut culpa maiores
+          cupiditate alias exercitationem error nesciunt.
+        </p>
+        <form action="">
+          <div class="input-group mt-5 mb-4">
+            <input type="text" class="text-capitalize form-control" placeholder="enter your email">
+            <div class="input-group-append">
+              <div class="input-group-text form-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class=" btn btn-yellow">subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end of newsletter section -->
+
+<!-- skills section -->
+<section id="skills" class="skills py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 col-md-6 col-lg-4 mx-auto d-flex my-3">
+        <div class="skill-icon mr-3">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div class="skill-text">
+          <h3 class="text-uppercase text-white">
+            free shipping
+          </h3>
+          <p class="text-capitalize text-muted">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, obcaecati!
+          </p>
+        </div>
+      </div>
+      <div class="col-10 col-md-6 col-lg-4 mx-auto d-flex my-3">
+        <div class="skill-icon mr-3">
+          <i class="fas fa-comment-dollar"></i>
+        </div>
+        <div class="skill-text">
+          <h3 class="text-uppercase text-white">
+            price promise
+          </h3>
+          <p class="text-capitalize text-muted">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, obcaecati!
+          </p>
+        </div>
+      </div>
+      <div class="col-10 col-md-6 col-lg-4 mx-auto d-flex my-3">
+        <div class="skill-icon mr-3">
+          <i class="fas fa-award"></i>
+        </div>
+        <div class="skill-text">
+          <h3 class="text-uppercase text-white">
+            lifetime warranty
+          </h3>
+          <p class="text-capitalize text-muted">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, obcaecati!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end of skills section -->
+
+<!-- footer section -->
+<footer class="footer py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 mx-auto text-center">
+        <h1 class="text-uppercase font-weight-bold text-yellow d-inline-block footer-title">
+          comfy sloth
+        </h1>
+        <!-- footer icons -->
+        <div class="footer-icons d-flex justify-content-center my-5">
+          <!-- single icon -->
+          <a href="" class="footer-icon mx-2">
+            <div class="fab fa-facebook"></div>
+          </a>
+          <!-- end of single icon -->
+          <!-- single icon -->
+          <a href="" class="footer-icon mx-2">
+            <div class="fab fa-twitter"></div>
+          </a>
+          <!-- end of single icon -->
+          <!-- single icon -->
+          <a href="" class="footer-icon mx-2">
+            <div class="fab fa-youtube"></div>
+          </a>
+          <!-- end of single icon -->
+          <!-- single icon -->
+          <a href="" class="footer-icon mx-2">
+            <div class="fab fa-google-plus"></div>
+          </a>
+          <!-- end of single icon -->
+          <!-- single icon -->
+          <a href="" class="footer-icon mx-2">
+            <div class="fab fa-instagram"></div>
+          </a>
+          <!-- end of single icon -->
+        </div>
+        <!-- footer icons -->
+        <p class="text-muted text-capitalize w-75 mx-auto text-center">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore illum illo exercitationem ex porro
+          consequuntur quae mollitia qui accusamus! Molestiae.
+        </p>
+        <div class="footer-contact d-flex justify-content-around mt-5">
+          <!-- single contact -->
+          <div class="text-capitalize">
+            <span class="contact-icon mr-2">
+              <i class="fas fa-map"></i>
+            </span>
+            123 Main Street, Los Angeles
+          </div>
+          <!-- end of single contact -->
+          <!-- single contact -->
+          <div class="text-capitalize">
+            <span class="contact-icon mr-2">
+              <i class="fas fa-phone"></i>
+            </span>
+            Phone : + (310) 111 2222
+          </div>
+          <!-- end of single contact -->
+          <!-- single contact -->
+          <div class="text-capitalize">
+            <span class="contact-icon mr-2">
+              <i class="fas fa-envelope"></i>
+            </span>
+            Email : Eamil@Email.Com
+          </div>
+          <!-- end of single contact -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end of footer section -->
+<!-- modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- modal header -->
+      <div class="modal-header">
+        <h5 class="modal-title text-capitalize">product info</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--end of  modal header -->
+      <!-- modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col text-center">
+            <img src="assets/img/img-products/product-1.png" class="img-fluid" alt="" />
+            <!-- ratings -->
+            <div class="ratings">
+              <span class="rating-icon"><i class="fas fa-star"></i></span>
+              <span class="rating-icon"><i class="fas fa-star"></i></span>
+              <span class="rating-icon"><i class="fas fa-star"></i></span>
+              <span class="rating-icon"><i class="fas fa-star"></i></span>
+              <span class="rating-icon"><i class="far fa-star"></i></span>
+              <span class="text-capitalize">(25 customer reviews)</span>
+            </div>
+            <!-- end of ratings -->
+            <h2 class="text-uppercase my-2">premium office armchair</h2>
+            <h2>$10.00 - $200.00</h2>
+            <p class="lead text-muted">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
+              porro.
+            </p>
+            <!-- colors -->
+            <h5 class="text-uppercase">
+              colors :
+              <span class="d-inline-block products-color products-color-black mr-2"></span>
+              <span class="d-inline-block products-color products-color-red mr-2"></span>
+              <span class="d-inline-block products-color products-color-blue mr-2"></span>
+            </h5>
+            <!-- end of colors -->
+            <!-- sizes -->
+            <h5 class="text-uppercase">
+              sizes : <span class="mx-2">xs</span> <span class="mx-2">s</span>
+              <span class="mx-2">m</span> <span class="mx-2">l</span>
+              <span class="mx-2">xl</span>
+            </h5>
+            <div class="d-flex flex-wrap">
+              <!-- cart buttons -->
+              <div class="d-flex my-2">
+                <span class="btn btn-black mx-1">-</span>
+                <span class="btn btn-black mx-1">4</span>
+                <span class="btn btn-black mx-1">+</span>
+              </div>
+              <button class="btn btn-black my-2 mx-2">wishlist</button>
+              <button class="btn btn-yellow my-2 mx-2">add to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal body -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>

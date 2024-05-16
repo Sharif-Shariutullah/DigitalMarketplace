@@ -1,0 +1,103 @@
+<div class="container">
+
+  <h1> Add New Product. </h1>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    <p>
+      <label for="name">Product Name:</label>
+      <input type="text" id="productName" name="productName" formControlName="productName" class="form-control">
+    </p>
+    <p>
+      <label for="name">Long Description:</label>
+      <input type="text" id="longDesc" name="longDesc" formControlName="longDesc" class="form-control">
+    </p>
+
+    <p>
+      <label for="name">Short Description:</label>
+      <input type="text" id="shortDesc" name="shortDesc" formControlName="shortDesc" class="form-control">
+    </p>
+
+    <p>
+      <label for="name">Unit Price:</label>
+      <input type="number" id="unitPrice" name="unitPrice" formControlName="unitPrice" class="form-control">
+    </p>
+    <p>
+      <label for="name">Unit Type:</label>
+      <input type="text" id="unitType" name="unitType" formControlName="unitType" class="form-control">
+    </p>
+    <p>
+      <label for="name">Unit Weight:</label>
+      <input type="number" id="unitWeight" name="unitWeight" formControlName="unitWeight" class="form-control">
+    </p>
+    <p>
+      <label for="name">Total Quantity:</label>
+      <input type="number" id="totalQuantity" name="totalQuantity" formControlName="totalQuantity" class="form-control">
+    </p>
+    <p>
+      <label for="name">Current Stock:</label>
+      <input type="number" id="currentStock" name="currentStock" formControlName="currentStock" class="form-control">
+    </p>
+
+    <select class="custom-select mb-3"  formControlName="productCategory">
+      <option value="">Choose Product Category</option>
+      <option *ngFor="let item of productCategory" [ngValue]="item.id">
+        {{ item.categoryName }}
+      </option>
+    </select>
+
+    <table class="table table-bordered" formArrayName="productOptions">
+      <tr>
+        <th colspan="2">Add Options:</th>
+        <th width="150px"><button type="button" (click)="addProductOptions()" class="btn btn-primary">Add More</button>
+        </th>
+      </tr>
+      <tr *ngFor="let quantity of productOptions().controls; let i=index" [formGroupName]="i">
+        <td>
+          Quantity :
+          <input type="number" formControlName="quantity" class="form-control">
+        </td>
+        <td>
+          Color:
+          <input type="text" formControlName="color" class="form-control">
+        </td>
+        <td>
+          Size :
+          <input type="text" formControlName="size" class="form-control">
+        </td>
+        <td>
+          <button (click)="removeProductOptions(i)" class="btn btn-danger">Remove</button>
+        </td>
+      </tr>
+    </table>
+
+    <p>
+      <label for="image"><b>Select No-1:</b></label>
+      <img src={{url1}} height="150px" width="150px">
+      <input id="image" name="image" type="file" class="form-control" (change)="onFileChanged($event,1)">
+    </p>
+
+    <p>
+      <label for="image"><b>Select No-2:</b></label>
+      <img src={{url2}} height="150px" width="150px">
+      <input id="image" name="image" type="file" class="form-control" (change)="onFileChanged($event,2)">
+    </p>
+
+    <p>
+      <label for="image">Select No-3:</label>
+      <img src={{url3}} height="150px" width="150px">
+      <input id="image" name="image" type="file" class="form-control" (change)="onFileChanged($event,3)">
+    </p>
+    <p>
+      <label for="image">Select No-4:</label>
+      <img src={{url4}} height="150px" width="150px">
+      <input id="image" name="image" type="file" class="form-control" (change)="onFileChanged($event,4)">
+    </p>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+
+  <br />
+  <!-- {{this.productForm.value | json}} -->
+</div>

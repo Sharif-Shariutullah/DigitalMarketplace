@@ -1,0 +1,25 @@
+<div class="container">
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Purchese Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of historyList">
+        <th scope="row">{{i.order_id}}</th>
+        <td>{{i.productName}}</td>
+        <td>{{i.categoryName}}</td>
+        <td>{{i.quantity}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.lastUpdated}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

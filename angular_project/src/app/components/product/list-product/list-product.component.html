@@ -1,0 +1,110 @@
+  <!-- featured section -->
+  <section id="featured" class="featured py-5">
+    <div class="container">
+      <div class="row my-3">
+        <div class="col-10 mx-auto text-center">
+          <h1 class="text-uppercase">
+            featured products
+          </h1>
+          <p class="text-muted">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, deleniti?
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <!-- single product -->
+        <div *ngFor="let product of productList" class="col-10 mx-auto col-md-6 col-lg-4">
+          <div class="featured-container p-5">
+            <img src="assets/img/uploadedImage/{{product.fileUploadList[0].name}}" alt="" class="img-fluid">
+            <span class="featured-search-icon" data-toggle="modal" data-target="#productModal" (click)="viewProduct(product)">
+              <i class="fas fa-search"></i>
+            </span>
+            <a class="featured-store-link text-capitalize" (click)="addtocart(product,qt=1)">Add to cart</a>
+          </div>
+          <h6 class="text-capitalize text-center my-2">
+            {{product.productName}}
+          </h6>
+          <h6 class="text-center">
+            <span class="text-muted old-price mx-2">{{product.unitPrice}}</span>
+            <span>{{product.unitPrice}}</span>
+          </h6>
+        </div>
+      
+      </div>
+    </div>
+  </section>
+  <!-- end of featured section -->
+
+  <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- modal header -->
+        <div class="modal-header">
+          <h5 class="modal-title text-capitalize">product info</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!--end of  modal header -->
+        <!-- modal body -->
+        <div class="modal-body" *ngIf="product">
+          <div class="row">
+            <div class="col text-center">
+              <img src="assets/img/uploadedImage/{{product.fileUploadList[0].name}}" class="img-fluid" alt="" />
+              <!-- ratings -->
+              <div class="ratings">
+                <span class="rating-icon"><i class="fas fa-star"></i></span>
+                <span class="rating-icon"><i class="fas fa-star"></i></span>
+                <span class="rating-icon"><i class="fas fa-star"></i></span>
+                <span class="rating-icon"><i class="fas fa-star"></i></span>
+                <span class="rating-icon"><i class="far fa-star"></i></span>
+                <span class="text-capitalize">(25 customer reviews)</span>
+              </div>
+              <!-- end of ratings -->
+              <h2 class="text-uppercase my-2">{{product.productName}}</h2>
+              <h2>{{product.unitPrice}}</h2>
+              <p class="lead text-muted">
+                {{product.shortDesc}}
+              </p>
+              <!-- colors -->
+              
+
+              <h5 class="text-uppercase" >
+                colors :
+                <span *ngFor="let item of product.productOptions">
+                  <span class="d-inline-block products-color products-color-{{item.color}} mr-2"></span>
+                </span>
+                <!-- <span class="d-inline-block products-color products-color-red mr-2"></span>
+                <span class="d-inline-block products-color products-color-blue mr-2"></span> -->
+              </h5>
+              <!-- end of colors -->
+              <!-- sizes -->
+              <h5 class="text-uppercase">
+                sizes : 
+                <span *ngFor="let item of product.productOptions">
+                  <span class="mx-2">{{item.size}}</span> 
+                </span>
+        
+              </h5>
+              <div class="d-flex flex-wrap">
+                <!-- cart buttons -->
+                <div class="d-flex my-2">
+                  <button class="btn btn-black mx-1" [disabled]='true' *ngIf="qt<=1" >-</button>
+                  <button class="btn btn-black mx-1" (click)="setQt('sub')"  *ngIf="qt>1">-</button>
+
+                  <button class="btn btn-black mx-1">{{qt}}</button>
+                  <button class="btn btn-black mx-1" (click)="setQt('add')">+</button>
+                </div>
+                <button class="btn btn-black my-2 mx-2">wishlist</button>
+                <button class="btn btn-yellow my-2 mx-2" (click)="addtocart(product,qt)">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end modal body -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>

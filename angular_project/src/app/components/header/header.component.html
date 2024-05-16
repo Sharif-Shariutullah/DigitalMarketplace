@@ -1,0 +1,81 @@
+<header id="header" class="header">
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <a href="index.html" class="navbar-brand">
+      <img src="assets/img/logo.png" alt="company logo" height="45px" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item mx-2">
+          <a href="/home" routerLink="/home" style="font-size: 20px;" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="/product" routerLink="/product" style="font-size: 20px;" class="nav-link">Products</a>
+        </li>
+        <!-- <li class="nav-item mx-2">
+            <a href="singleproduct.html" class="nav-link">Single Product</a>
+          </li> -->
+        <li class="nav-item mx-2" *ngIf="showNormalBoard">
+          <a href="/userDasboard" routerLink="/userDasboard" style="font-size: 20px;" class="nav-link">Purchase
+            History</a>
+        </li>
+        <li class="nav-item mx-2" *ngIf="showNormalBoard">
+          <a href="/cart" routerLink="/cart" style="font-size: 20px;" class="nav-link">Carts</a>
+        </li>
+        <li class="nav-item mx-2" *ngIf="showAdminBoard" style="font-size: 20px;">
+          <a href="/adminDasboard" routerLink="/adminDasboard" style="font-size: 20px;" class="nav-link">Sales
+            History</a>
+        </li>
+        <li class="nav-item mx-2" *ngIf="showAdminBoard">
+          <a href="/adminDasboard" routerLink="/addProduct" style="font-size: 20px;" class="nav-link">Add Product</a>
+        </li>
+<!-- 
+        <li class="nav-item mx-2" *ngIf="showAdminBoard">
+          <a href="/adminDasboard" routerLink="/addProductImage" style="font-size: 20px;" class="nav-link">Add Product
+            Image</a>
+        </li> -->
+
+        <li class="nav-item mx-2" *ngIf="showAdminBoard">
+          <a href="/cart" routerLink="/cart" style="font-size: 20px;" class="nav-link">Store</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-icons d-none d-lg-flex">
+      <!-- single icon -->
+      <div class="navbar-icon mx-2"><i class="fas fa-search"></i></div>
+      <!-- end of single icon -->
+      <!-- single icon -->
+      <a href="/cart" routerLink="/cart" class="navbar-icon mx-2 navbar-cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-items"><b>{{totalItem}}</b></div>
+      </a>
+      <!-- end of  single icon -->
+    </div>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a href="/signup" class="nav-link" routerLink="signup">Sign Up</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ userDetails.sub }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <!-- <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button> -->
+      </li>
+    </ul>
+  </nav>
+  <!-- end of navbar -->
+
+</header>

@@ -1,0 +1,31 @@
+<!-- 
+<div class="container pt-5">
+    <div class="col-md-4">
+      <h2>{{ title }}</h2>
+  
+      <form [formGroup]="uploadForm" (ngsubmit)="save()">
+        <div class="form-group">
+          <input formcontrolname="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
+          <div *ngif="uploadForm.get('file')?.touched && uploadForm.get('file')?.invalid" class="alert alert-danger">
+            <div class="mt-2" *ngif="uploadForm.get('file')?.errors && uploadForm.get('file')?.errors?.['required']">
+              File is required.
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 d-flex">
+          <div *ngfor="let url of images">
+            <img class="image-preview" [src]="url" alt="My Image">
+            <br>
+          </div>
+        </div>
+        <button class="btn btn-primary mt-4" [disabled]="uploadForm.invalid" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+  <img src={{url}} height="200px" width="150px">
+  <input type="file" (change)="onFileChanged($event)" > -->
+
+  <img src={{url}} height="200px" width="150px">
+  <input type="file" (change)="onFileChanged($event)" >
