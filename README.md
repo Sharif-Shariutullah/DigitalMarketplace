@@ -21,13 +21,13 @@ Follow these instructions to get the project up and running on your local machin
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/Digital-Marketplace.git
+git clone https://github.com/Sharif-Shariutullah/DigitalMarketplace.git
 ```
 
 ### Database Setup
 
-1. Create a new MySQL database named `digital_marketplace`.
-2. Import the database schema from `src/main/resources/database/digital_marketplace.sql`.
+1. Create a new MySQL database.
+2. Import the database schema from my database `.sql` file
 
 ### Backend Setup
 
